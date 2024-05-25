@@ -34,12 +34,22 @@ def cart():
         return redirect(url_for('login'))
     user = User.query.get(session['user_id'])
     items = OrderProduct.query.all()
+    orders_products_id = [el.product_id for el in items]
     products = Product.query.all()
     product_dict = {}
     for product in products:
         product_dict[product.id] = product
+    cost = 0
+    for el in orders_products_id:
+        try:
+            product_dict[el]
+            cost += product_dict[el].price
+        except:
+            pass
+    new_order = Order(user_id=user, total_price=cost)
+    db.session.add(new_order)
 
-    return render_template('cart.html', user=user, data=items, products=product_dict)
+    return render_template('cart.html', user=user, data=items, products=product_dict, cost=cost)
 
 # вход в личный кабинет
 @app.route('/login', methods=['GET', 'POST'])
@@ -125,7 +135,8 @@ def order_history():
     if not user:
         flash('User not found')
         return redirect(url_for('login'))
-    return render_template('order_history.html', user=user)
+    ords = Order.query.all()
+    return render_template('order_history.html', orders=ords)
 
 
 # добавление товара в корзину?
@@ -152,13 +163,6 @@ def checkout():
             return f"Error: {e}"
     else:
         return render_template('checkout.html')
-
-# очистить корзину
-@app.route('/clear-cart', methods=['POST'])
-def clear_cart():
-    # Here you would implement the logic to clear the cart in the database
-    flash('Cart cleared successfully')
-    return jsonify({'message': 'Cart cleared successfully'})
 
 #  просто таблица пользователей
 @app.route('/users')

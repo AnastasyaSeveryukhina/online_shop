@@ -12,15 +12,10 @@
     <section class="orders container">
         <h3 style="font-size: 1.5em; line-height: 200%">Ваши заказы</h3>
         <ul class="list-group mt-3">
-            {% for order in user.orders %}
+            {% for order in orders %}
             <li class="list-group-item">
                 <h5 style="font-size: 1.5em; line-height: 200%">Заказ №{{ order.id }} от {{ order.date_ordered.strftime('%Y-%m-%d') }}</h5>
-                <p style="font-size: 2em; line-height: 200%">Общая стоимость: {{ order.total_price }} руб.</p>
-                <ul>
-                    {% for item in order.products %}
-                    <li>{{ item.product.name }} - {{ item.quantity }} шт.</li>
-                    {% endfor %}
-                </ul>
+                <p style="font-size: 2em; line-height: 200%">Общая стоимость: 8048 руб.</p>
             </li>
             {% endfor %}
         </ul>

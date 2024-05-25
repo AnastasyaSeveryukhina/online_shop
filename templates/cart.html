@@ -29,7 +29,6 @@
                 {% endfor %}
             </ul>
             <ul class="cart__list-buttons">
-                <li><button type="button" class="cart__list-button" onclick="clearCart()">Очистить корзину</button></li>
                 <a href="/catalog"><li><button type="button" class="cart__list-button">Продолжить покупки</button></li></a>
             </ul>
         </div>
@@ -46,7 +45,7 @@
             </form>
             <div class="cart__total">
                 <div class="cart__total_text_wrapper">
-                    <p class="cart__grandtotal_text" id="total-price">К оплате: 0 руб.</p>
+                    <p class="cart__grandtotal_text" id="total-price">К оплате: {{cost}} руб.</p>
                 </div>
                 <div class="cart__total_checkout_wrapper">
                     <hr class="cart__total_line">
