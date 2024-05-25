@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Интернет-магазин - каталог товаров для мужчин</title>
+{% endblock %}
+
+{% block body %}
+
+    <main class="main">
+        <section class="heading">
+            <div class="heading__wrapper container">
+                <!-- Навигация на bootstrap -->
+                <ul class="nav justify-content-end heading__menu">
+                    <li class="nav-item">
+                        <a class="nav-link heading__nav-link heading__nav-link-first" aria-current="page"
+                            href="/catalog">home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link heading__nav-link" href="/for_women">woman</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="catalog container">
+            <div class="catalog__grid">
+            {% for el in data%}
+                <div class="catalog__item">
+                    <div class="catalog__item-imgwrapper">
+                        <img class="catalog__item-img" src={{el.image}} alt={{el.name}}>
+                        <div class="catalog__item-overlay"></div>
+                        <button type="button" class="catalog__item-button">
+                            <img src="static/img/basket.svg" alt="Добавить в корзину" class="catalog__item-btnimg">
+                            <span class="catalog__item-btntxt">Добавить в корзину</span>
+                        </button>
+                    </div>
+                    <h3 class="catalog__item-heading">{{el.name}}</h3>
+                    <p class="catalog__item-text">{{el.description}}</p>
+                    <p class="catalog__item-price">{{el.price}} руб.</p>
+                </div>
+            {% endfor %}
+
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

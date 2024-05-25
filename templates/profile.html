@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Интернет-магазин - Личный кабинет</title>
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="heading">
+        <h2 class="heading__heading container">Личный кабинет</h2>
+    </section>
+    <section>
+        <div class="menu">
+	<ul>
+		<li><a href="/edit_profile">Изменить данные</a></li>
+		<li><a href="/order_history">История заказов</a></li>
+		<li><a href="/logout" style="color:white">Выйти</a></li>
+	</ul>
+    </section>
+    <section class="account container">
+        <div class="card mt-3">
+            <div class="card-header">
+                <p style="font-size: 2em; ; line-height: 300%">Добро пожаловать, {{ user.first_name }} {{ user.last_name }}!</p>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title" style="font-size: 2em">Ваши данные:</h1>
+                <p class="card-text" style="font-size: 1.5em; line-height: 200%;">Email: {{ user.email }}</p>
+                <p class="card-text" style="font-size: 1.5em; line-height: 200%">Бонусы: {{ user.bonuses }}</p>
+
+<!--                <a href="/edit_profile" class="btn btn-primary">Изменить данные</a>-->
+<!--                <a href="/order_history" class="btn btn-secondary">История заказов</a>-->
+<!--                <a href="/logout" class="btn btn-danger mt-3">Выйти</a>-->
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

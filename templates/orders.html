@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Интернет-магазин - Заказы</title>
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="heading">
+        <h2 class="heading__heading container">Заказы</h2>
+    </section>
+    <section class="orders container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Дата заказа</th>
+                    <th scope="col">Пользователь</th>
+                    <th scope="col">Общая стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.date_ordered.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ order.user.email }}</td>
+                    <td>{{ order.total_price }} руб.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}

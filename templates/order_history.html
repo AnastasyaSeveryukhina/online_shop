@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Интернет-магазин - История заказов</title>
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="heading">
+        <h2 class="heading__heading container">История заказов</h2>
+    </section>
+    <section class="orders container">
+        <h3 style="font-size: 1.5em; line-height: 200%">Ваши заказы</h3>
+        <ul class="list-group mt-3">
+            {% for order in user.orders %}
+            <li class="list-group-item">
+                <h5 style="font-size: 1.5em; line-height: 200%">Заказ №{{ order.id }} от {{ order.date_ordered.strftime('%Y-%m-%d') }}</h5>
+                <p style="font-size: 2em; line-height: 200%">Общая стоимость: {{ order.total_price }} руб.</p>
+                <ul>
+                    {% for item in order.products %}
+                    <li>{{ item.product.name }} - {{ item.quantity }} шт.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

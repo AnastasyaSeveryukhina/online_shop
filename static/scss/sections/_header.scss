@@ -1,0 +1,156 @@
+.header {
+    background-color: $black-color;
+    position: relative;
+
+    &__wrapper {
+        min-height: 75px;
+        @include flex-center-space-between;
+    }
+
+    &__logo_wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        margin: 0 41px 0 0;
+    }
+
+    &__search {
+        display: none;
+        width: 340px;
+        min-height: 44px;
+        border: 1px solid #A4A4A4;
+        margin: 0 0 0 20px;
+        padding: 0 0 0 17px;
+        text-transform: capitalize;
+
+        ::-webkit-input-placeholder {
+            color: $lightgraytext-color;
+            @include font(13px, 16px);
+        }
+
+        ::-moz-placeholder {
+            /* Firefox 19+ */
+            color: $lightgraytext-color;
+            @include font(13px, 16px);
+        }
+
+        :-ms-input-placeholder {
+            color: $lightgraytext-color;
+            @include font(13px, 16px);
+        }
+
+        :-moz-placeholder {
+            /* Firefox 18- */
+            color: $lightgraytext-color;
+            @include font(13px, 16px);
+        }
+
+        &:focus {
+            display: block;
+        }
+
+        @include mobileL {
+            width: 150px;
+        }
+    }
+
+    &__list {
+        display: flex;
+
+        @include mobileL {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__icon {
+        fill: $grayicons-color;
+    }
+
+    &__burger {
+        padding: 3px 0 0 0;
+    }
+
+    &__button {
+        @include flex-center-space-between;
+        background-color: transparent;
+        border: none;
+        margin: 0 0 0 33px;
+
+        &:hover .header__icon {
+            fill: $pink-color;
+            cursor: pointer;
+        }
+    }
+
+    &__search_button {
+        margin: 0;
+
+        &:hover .header__search {
+            display: block;
+        }
+    }
+
+    &__navigation {
+        display: none;
+        position: absolute;
+        right: 0px;
+        top: 75px;
+        min-width: 232px;
+        min-height: 747px;
+        background: $white-color;
+        border: none;
+        padding: 17px 17px 0 34px;
+    }
+
+    &__navigation_close {
+        margin: 0 0 0 210px;
+        background: transparent;
+        fill: $graytext-color;
+
+        &:hover {
+            fill: $pink-color;
+            cursor: pointer;
+        }
+    }
+
+    &__navigation_heading {
+        @include font(14px, 17px, 700);
+        color: $darkblack-color;
+        text-transform: uppercase;
+    }
+
+    &__navigation_list_heading {
+        @include font(14px, 17px, 400);
+        color: $pink-color;
+        text-transform: uppercase;
+        margin: 24px 0 12px 0;
+    }
+
+    &__navigation_heading_link {
+        text-decoration: none;
+    }
+
+    &__navigation_link {
+        text-decoration: none;
+        @include font(14px, 17px, 400);
+        color: $graytext-color;
+        margin: 0 0 11px 22px;
+        display: block;
+    }
+
+    &__navigation_link:hover {
+        color: $pink-color;
+    }
+
+    &__navigation_heading_link:hover &__navigation_list_heading {
+        color: $graytext-color;
+    }
+
+    &__mobile_hide {
+        @include mobile {
+            display: none;
+        }
+    }
+}

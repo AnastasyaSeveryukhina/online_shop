@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Интернет-магазин - Корзина</title>
+{% endblock %}
+
+{% block body %}
+
+<main class="main">
+    <section class="heading">
+        <h2 class="heading__heading container">Корзина</h2>
+    </section>
+    <section class="cart container">
+        <h2 class="visually-hidden">Корзина</h2>
+        <div class="cart__wrapper">
+            <ul id="cart-items" class="cart__list">
+                {{data}}
+                {% for el in data%}
+                <h3 class="cart__shipping_heading">{{el.product_id}}</h3>>
+                <h3 class="cart__shipping_heading">{{el.quantity}}</h3>>
+                {% endfor %}
+            </ul>
+            <ul class="cart__list-buttons">
+                <li><button type="button" class="cart__list-button" onclick="clearCart()">Очистить корзину</button></li>
+                <a href="/catalog"><li><button type="button" class="cart__list-button">Продолжить покупки</button></li></a>
+            </ul>
+        </div>
+        <div class="cart__shipping_wrapper">
+            <form action="post" class="cart__shipping">
+                <h3 class="cart__shipping_heading">Адрес доставки</h3>
+                <label for="city" class="visually-hidden">Город</label>
+                <input type="text" id="city" class="cart__shipping_input" placeholder="Санкт-Петербург">
+                <label for="state" class="visually-hidden">Улица</label>
+                <input type="text" id="state" class="cart__shipping_input" placeholder="Кантемировская">
+                <label for="zip" class="visually-hidden">Почтовый индекс</label>
+                <input type="text" id="zip" class="cart__shipping_input" placeholder="194100">
+                <button type="submit" class="cart__shipping_button">Сохранить</button>
+            </form>
+            <div class="cart__total">
+                <div class="cart__total_text_wrapper">
+                    <p class="cart__grandtotal_text" id="total-price">К оплате: 0 руб.</p>
+                </div>
+                <div class="cart__total_checkout_wrapper">
+                    <hr class="cart__total_line">
+                    <button type="submit" class="cart__total_checkout">Оплатить</button>
+                </div>
+            </div>
+        </div>
+        <div class="main__overlay"></div>
+    </section>
+</main>
+
+{% endblock %}

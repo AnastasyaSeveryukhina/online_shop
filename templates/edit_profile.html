@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Интернет-магазин - Изменить данные</title>
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="heading">
+        <h2 class="heading__heading container">Изменить данные</h2>
+    </section>
+    <section class="account container">
+        <form action="/edit_profile" method="post" class="mt-3">
+            <fieldset>
+                <legend>Обновить данные</legend>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">Имя:</label>
+                    <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Фамилия:</label>
+                    <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль:</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Новый пароль">
+                </div>
+                <button type="submit" class="btn btn-primary">Обновить</button>
+            </fieldset>
+        </form>
+    </section>
+</main>
+{% endblock %}

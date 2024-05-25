@@ -1,0 +1,24 @@
+@import './variables';
+@import './fonts';
+@import './reset';
+@import './mixins';
+@import './common';
+
+@import './fontawesome/fontawesome.scss';
+@import './fontawesome/brands.scss';
+@import './fontawesome/solid.scss';
+
+
+@import './sections/header';
+@import './sections/intro';
+@import './sections/stock';
+@import './sections/featured';
+@import './sections/advantages';
+@import './sections/subscribe';
+@import './sections/copyrisght';
+@import './sections/heading';
+@import './sections/registration';
+@import './sections/cart';
+@import './sections/product';
+@import './sections/catalog';
+@import './sections/filter';

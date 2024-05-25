@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Интернет-магазин - каталог товаров</title>
+{% endblock %}
+
+{% block body %}
+
+    <main class="main">
+        <section class="heading">
+            <div class="heading__wrapper container">
+                <!-- Навигация на bootstrap -->
+                <ul class="nav justify-content-end heading__menu">
+                    <li class="nav-item">
+                        <a class="nav-link heading__nav-link heading__nav-link-first" aria-current="page"
+                            href="#home">home</a>
+                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link heading__nav-link" href="/for_man">man</a>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+        </section>
+        <section class="stock">
+            <h2 class="visually-hidden">Stock</h2>
+            <ul class="stock__list container">
+                <li class="stock__item stock__item_woman">
+                    <p class="stock__item_text"><a href="/for_women" style="color:white">Женщинам</a></p>
+                </li>
+                <li class="stock__item stock__item_man">
+                    <p class="stock__item_text"><a href="/for_men" style="color:white">Мужчинам</a></p>
+                </li>
+                <li class="stock__item stock__item_kids">
+                    <p class="stock__item_text"><a href="/for_kids" style="color:white">Детям</a></p>
+                </li>
+                <li class="stock__item stock__item_accessoires">
+                    <p class="stock__item_text"><a href="/accessories" style="color:white">Аксессуары</a></p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+{% endblock %}
