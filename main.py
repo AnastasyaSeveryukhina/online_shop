@@ -34,7 +34,12 @@ def cart():
         return redirect(url_for('login'))
     user = User.query.get(session['user_id'])
     items = OrderProduct.query.all()
-    return render_template('cart.html', user=user, data=items)
+    products = Product.query.all()
+    product_dict = {}
+    for product in products:
+        product_dict[product.id] = product
+
+    return render_template('cart.html', user=user, data=items, products=product_dict)
 
 # вход в личный кабинет
 @app.route('/login', methods=['GET', 'POST'])
@@ -128,39 +133,25 @@ def order_history():
 def checkout():
     if request.method == 'POST':
         quantity = request.form['quantity']
-        # if 'product_id' not in session:
-        #     flash('You need to choose product')
-        #     return redirect(url_for('for_men'))
-        product_id = Product.query.get(session['product_id'])
-        new_order_product = OrderProduct(product_id=product_id, quantity=quantity)
+        product_id = request.form['product_id']
+        if "created_order" not in session:
+            try:
+                new_order = Order(user_id=session['user_id'], total_price=0)
+                db.session.add(new_order)
+                db.session.commit()
+                session['created_order'] = new_order.id
+            except Exception as e:
+                return f"Error: {e}"
+
+        new_order_product = OrderProduct(product_id=product_id, quantity=quantity, order_id=session['created_order'])
         try:
             db.session.add(new_order_product)
             db.session.commit()
-            return redirect(url_for('for_men'))
-        except:
-            return "Error"
+            return redirect(url_for('cart'))
+        except Exception as e:
+            return f"Error: {e}"
     else:
         return render_template('checkout.html')
-    # if request.method == 'POST':
-    #     if 'user_id' not in session:
-    #         return redirect(url_for('login'))
-    #     data = request.get_json()
-    #     total_price = data.get('total_price')
-    #     items = data.get('items')
-    #     user_id = session['user_id']
-    #     order = Order(user_id=user_id, total_price=total_price)
-    #     db.session.add(order)
-    #     db.session.commit()
-    #
-    #     for item in items:
-    #         product_id = item.get('product_id')
-    #         quantity = item.get('quantity')
-    #         order_product = OrderProduct(order_id=order.id, product_id=product_id, quantity=quantity)
-    #         db.session.add(order_product)
-    #
-    #     db.session.commit()
-    #     flash('Order placed successfully')
-    #     return jsonify({'message': 'Order placed successfully, receipt sent to email'})
 
 # очистить корзину
 @app.route('/clear-cart', methods=['POST'])

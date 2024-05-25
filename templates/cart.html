@@ -13,11 +13,19 @@
     <section class="cart container">
         <h2 class="visually-hidden">Корзина</h2>
         <div class="cart__wrapper">
-            <ul id="cart-items" class="cart__list">
-                {{data}}
+            <ul class="cart__list">
                 {% for el in data%}
-                <h3 class="cart__shipping_heading">{{el.product_id}}</h3>>
-                <h3 class="cart__shipping_heading">{{el.quantity}}</h3>>
+                    <li class="cart__list-item">
+                        <img src={{products.get(el.product_id).image}} alt={{products.get(el.product_id).name}} width="262" height="306" class="cart__list-img">
+                        <div class="cart__list-wrapper">
+                            <h3 class="cart__list-heading">{{products.get(el.product_id).name}}</h3>
+                            <p class="cart__list-text">Стоимость: <span class="cart__list-pink">{{products.get(el.product_id).price}} руб.</span></p>
+                            <div class="cart__list-subwrapper">
+                                <label class="cart__list-text">Количество: {{el.quantity}}</label>
+    <!--                            <input type="text" class="cart__list-qty" placeholder="2">-->
+                            </div>
+                        </div>
+                    </li>
                 {% endfor %}
             </ul>
             <ul class="cart__list-buttons">

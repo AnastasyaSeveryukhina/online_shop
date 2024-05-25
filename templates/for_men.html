@@ -29,18 +29,14 @@
                         <img class="catalog__item-img" src={{el.image}} alt={{el.name}}>
                         <div class="catalog__item-overlay"></div>
                     </div>
-                    <h3 class="catalog__item-heading"><a href="/product">{{el.name}}</a>></h3>
-                    <p class="catalog__item-text">{{el.description}}</p>
-                    <p class="catalog__item-price">{{el.price}} руб.</p>
-                    <form action="/checkout" method="post" class="registration__form">
-                        <input type="number" class="registration__form_input" name="quantity" id="quantity" placeholder="Введите число" required>
-                        <button type="submit" class="product__addtocart_btntxt">Добавить в корзину</button>
-                    </form>
-
-<!--                        <button type="submit" class="catalog__item-button">-->
-<!--                            <img src="static/img/basket.svg" alt="Добавить в корзину" class="catalog__item-btnimg">-->
-<!--                            <span class="catalog__item-btntxt">Добавить в корзину</span>-->
-<!--                        </button>-->
+                        <h3 class="catalog__item-heading">{{el.name}}</h3>
+                        <p class="catalog__item-text">{{el.description}}</p>
+                        <p class="catalog__item-price">{{el.price}} руб.</p>
+                        <form action="/checkout" method="post" class="registration__form">
+                            <input type="hidden" name="product_id" id="product_id" value="{{ el.id }}">
+                            <input type="number" style="width: 250" name="quantity" id="quantity" placeholder="Введите число" required>
+                            <button type="submit" style="width: 250; background-color: #F16D7F">Добавить в корзину</button>
+                        </form>
                 </div>
             {% endfor %}
 

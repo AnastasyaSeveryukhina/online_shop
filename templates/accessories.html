@@ -28,14 +28,15 @@
                     <div class="catalog__item-imgwrapper">
                         <img class="catalog__item-img" src={{el.image}} alt={{el.name}}>
                         <div class="catalog__item-overlay"></div>
-                        <button type="button" class="catalog__item-button">
-                            <img src="static/img/basket.svg" alt="Добавить в корзину" class="catalog__item-btnimg">
-                            <span class="catalog__item-btntxt">Добавить в корзину</span>
-                        </button>
                     </div>
-                    <h3 class="catalog__item-heading">{{el.name}}</h3>
-                    <p class="catalog__item-text">{{el.description}}</p>
-                    <p class="catalog__item-price">{{el.price}} руб.</p>
+                        <h3 class="catalog__item-heading">{{el.name}}</h3>
+                        <p class="catalog__item-text">{{el.description}}</p>
+                        <p class="catalog__item-price">{{el.price}} руб.</p>
+                        <form action="/checkout" method="post" class="registration__form">
+                            <input type="hidden" name="product_id" id="product_id" value="{{ el.id }}">
+                            <input type="number" style="width: 250" name="quantity" id="quantity" placeholder="Введите число" required>
+                            <button type="submit" style="width: 250; background-color: #F16D7F">Добавить в корзину</button>
+                        </form>
                 </div>
             {% endfor %}
 
